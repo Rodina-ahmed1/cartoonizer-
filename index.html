@@ -58,7 +58,6 @@
     height: calc(100vh - 65px);
   }
 
-  /* SIDEBAR */
   .sidebar {
     background: var(--surface);
     border-right: 1px solid var(--border);
@@ -80,14 +79,8 @@
   }
 
   .upload-zone:hover, .upload-zone.drag { border-color: var(--accent); background: rgba(255,107,53,0.05); }
-
-  .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; }
-
-  .upload-icon {
-    font-size: 32px;
-    margin-bottom: 8px;
-  }
-
+  .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .upload-icon { font-size: 32px; margin-bottom: 8px; }
   .upload-zone h3 { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
   .upload-zone p  { font-size: 12px; color: var(--muted); }
 
@@ -119,28 +112,14 @@
     font-weight: 500;
   }
 
-  .tab-btn.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-  }
-
+  .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
   .tab-btn:hover:not(.active) { border-color: var(--accent); color: var(--text); }
 
   .control-group { display: flex; flex-direction: column; gap: 14px; }
 
-  .control {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+  .control { display: flex; flex-direction: column; gap: 6px; }
 
-  .control-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
+  .control-header { display: flex; justify-content: space-between; align-items: center; }
   .control-header label { font-size: 13px; font-weight: 500; }
 
   .val-badge {
@@ -166,8 +145,7 @@
 
   input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
+    width: 16px; height: 16px;
     border-radius: 50%;
     background: var(--accent);
     cursor: pointer;
@@ -238,7 +216,6 @@
     border-left: 2px solid var(--accent);
   }
 
-  /* CANVAS AREA */
   .canvas-area {
     background: var(--bg);
     display: flex;
@@ -284,12 +261,7 @@
     gap: 6px;
   }
 
-  .dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--muted);
-  }
-
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
   .dot.processing { background: var(--accent2); animation: pulse 1s infinite; }
   .dot.done { background: #4ade80; }
 
@@ -297,12 +269,11 @@
 
   .image-viewport {
     flex: 1;
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 32px;
-    overflow: hidden;
-    position: relative;
   }
 
   .empty-state {
@@ -310,68 +281,19 @@
     color: var(--muted);
   }
 
-  .empty-state .big-icon { font-size: 56px; margin-bottom: 16px; opacity: 0.3; }
-  .empty-state h2 { font-size: 18px; font-weight: 500; margin-bottom: 6px; }
-  .empty-state p  { font-size: 13px; }
-
-  .compare-view {
-    display: none;
-    width: 100%;
-    height: 100%;
-    gap: 16px;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .compare-view.visible { display: flex; }
-
-  .compare-panel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    height: 100%;
-    max-height: 100%;
-  }
-
-  .compare-label {
-    font-size: 11px;
-    font-family: 'Space Mono', monospace;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .compare-panel img {
-    max-width: 100%;
-    max-height: calc(100% - 28px);
-    object-fit: contain;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-  }
-
-  .single-view {
-    display: none;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-  }
-
-  .single-view.visible { display: block; }
+  .empty-state .big-icon { font-size: 64px; margin-bottom: 16px; }
+  .empty-state h2 { font-size: 20px; font-weight: 500; margin-bottom: 8px; color: var(--text); }
+  .empty-state p { font-size: 14px; }
 
   .loading-overlay {
     display: none;
     position: absolute;
     inset: 0;
-    background: rgba(14,14,16,0.75);
+    background: rgba(14,14,16,0.85);
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 12px;
-    border-radius: 4px;
+    gap: 16px;
     z-index: 10;
   }
 
@@ -382,17 +304,64 @@
     border: 3px solid var(--border);
     border-top-color: var(--accent);
     border-radius: 50%;
-    animation: spin 0.7s linear infinite;
+    animation: spin 0.8s linear infinite;
   }
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  .loading-overlay p { font-size: 13px; color: var(--muted); }
+  .compare-view {
+    display: none;
+    width: 100%;
+    height: 100%;
+    gap: 2px;
+  }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .compare-view.visible { display: grid; grid-template-columns: 1fr 1fr; }
+
+  .compare-panel {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+  }
+
+  .compare-label {
+    position: absolute;
+    top: 12px; left: 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: rgba(0,0,0,0.6);
+    color: var(--muted);
+    padding: 4px 10px;
+    border-radius: 20px;
+    z-index: 2;
+  }
+
+  .compare-panel img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .single-view {
+    display: none;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .single-view.visible { display: block; }
+
+  canvas { display: none; }
+
+  @media (max-width: 700px) {
+    .app { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+    .sidebar { height: auto; max-height: 55vh; }
+  }
 </style>
 </head>
 <body>
@@ -435,10 +404,10 @@
 
       <div class="control">
         <div class="control-header">
-          <label>Smoothing Passes</label>
-          <span class="val-badge" id="smoothVal">10</span>
+          <label>Smoothing</label>
+          <span class="val-badge" id="smoothVal">5</span>
         </div>
-        <input type="range" id="smoothSlider" min="1" max="20" step="1" value="10">
+        <input type="range" id="smoothSlider" min="1" max="15" step="1" value="5">
       </div>
 
       <div class="control">
@@ -459,7 +428,7 @@
       <div class="section-label">Sketch Style</div>
 
       <div class="control">
-        <label style="font-size:13px; font-weight:500; margin-bottom:4px; display:block;">Color Style</label>
+        <label style="font-size:13px;font-weight:500;margin-bottom:4px;display:block;">Color Style</label>
         <select id="styleSelect">
           <option>Sepia</option>
           <option>Comic Blue</option>
@@ -532,29 +501,34 @@
   </main>
 </div>
 
+<!-- hidden canvases for processing -->
+<canvas id="srcCanvas"></canvas>
+<canvas id="outCanvas"></canvas>
+
 <script>
+// ─── State ───────────────────────────────────────────────────────────────────
 let origDataUrl = null;
 let resultDataUrl = null;
 let currentMode = 'heavy';
 let currentView = 'compare';
 let isProcessing = false;
+let srcImageData = null; // raw pixel data of uploaded image
 
 const $ = id => document.getElementById(id);
 
+// ─── Status ──────────────────────────────────────────────────────────────────
 function setStatus(state, text) {
   $('statusDot').className = 'dot ' + state;
   $('statusText').textContent = text;
 }
 
+// ─── View ────────────────────────────────────────────────────────────────────
 function showView(view) {
   currentView = view;
   document.querySelectorAll('.view-btn').forEach(b => b.classList.toggle('active', b.dataset.view === view));
-
   $('compareView').classList.remove('visible');
   $('singleImg').classList.remove('visible');
-
   if (!origDataUrl) return;
-
   if (view === 'compare') {
     $('compareView').classList.add('visible');
     $('origImg').src = origDataUrl;
@@ -562,77 +536,310 @@ function showView(view) {
   } else if (view === 'original') {
     $('singleImg').src = origDataUrl;
     $('singleImg').classList.add('visible');
-  } else if (view === 'result') {
+  } else {
     $('singleImg').src = resultDataUrl || origDataUrl;
     $('singleImg').classList.add('visible');
   }
 }
 
-function getParams() {
-  if (currentMode === 'heavy') {
-    return {
-      mode: 'heavy',
-      k: parseInt($('kSlider').value),
-      smoothing: parseInt($('smoothSlider').value),
-      thickness: parseInt($('thickSlider').value),
+// ─── Load image ──────────────────────────────────────────────────────────────
+function loadFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      // Draw to srcCanvas to get pixel data
+      const canvas = $('srcCanvas');
+      // Limit size for performance
+      const MAX = 800;
+      let w = img.width, h = img.height;
+      if (w > MAX || h > MAX) {
+        if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+        else        { w = Math.round(w * MAX / h); h = MAX; }
+      }
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      srcImageData = ctx.getImageData(0, 0, w, h);
+      origDataUrl = canvas.toDataURL('image/jpeg', 0.9);
+
+      $('origImg').src = origDataUrl;
+      $('resultImg').src = origDataUrl;
+      $('singleImg').src = origDataUrl;
+      $('compareView').classList.add('visible');
+      $('emptyState').style.display = 'none';
+      $('applyBtn').disabled = false;
+      $('downloadBtn').disabled = true;
+      setStatus('', 'Image loaded — click Apply');
     };
-  } else {
-    return {
-      mode: 'sketch',
-      style: $('styleSelect').value,
-      line_thickness: parseInt($('lineSlider').value),
-      posterize_levels: parseInt($('levelsSlider').value),
-    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ─── Gaussian blur (box blur approximation) ──────────────────────────────────
+function boxBlur(data, w, h, radius) {
+  const src = new Uint8ClampedArray(data);
+  const dst = data;
+  const r = radius;
+  // horizontal
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      let rr=0,gg=0,bb=0,cnt=0;
+      for (let dx = -r; dx <= r; dx++) {
+        const nx = Math.min(w-1, Math.max(0, x+dx));
+        const i = (y*w+nx)*4;
+        rr+=src[i]; gg+=src[i+1]; bb+=src[i+2]; cnt++;
+      }
+      const i = (y*w+x)*4;
+      dst[i]=rr/cnt; dst[i+1]=gg/cnt; dst[i+2]=bb/cnt;
+    }
+  }
+  const src2 = new Uint8ClampedArray(dst);
+  // vertical
+  for (let x = 0; x < w; x++) {
+    for (let y = 0; y < h; y++) {
+      let rr=0,gg=0,bb=0,cnt=0;
+      for (let dy = -r; dy <= r; dy++) {
+        const ny = Math.min(h-1, Math.max(0, y+dy));
+        const i = (ny*w+x)*4;
+        rr+=src2[i]; gg+=src2[i+1]; bb+=src2[i+2]; cnt++;
+      }
+      const i = (y*w+x)*4;
+      dst[i]=rr/cnt; dst[i+1]=gg/cnt; dst[i+2]=bb/cnt;
+    }
   }
 }
 
-async function uploadFile(file) {
-  const form = new FormData();
-  form.append('image', file);
-  setStatus('processing', 'Uploading...');
-  $('loadingOverlay').classList.add('visible');
-  $('emptyState').style.display = 'none';
-
-  const res = await fetch('/upload', { method: 'POST', body: form });
-  const data = await res.json();
-
-  origDataUrl = 'data:image/jpeg;base64,' + data.preview;
-  resultDataUrl = null;
-  $('origImg').src = origDataUrl;
-  $('resultImg').src = origDataUrl;
-  $('singleImg').src = origDataUrl;
-  $('compareView').classList.add('visible');
-
-  $('loadingOverlay').classList.remove('visible');
-  $('applyBtn').disabled = false;
-  $('downloadBtn').disabled = true;
-  setStatus('', 'Image loaded — click Apply');
-
-  if (!data.is_color && currentMode === 'heavy') {
-    document.querySelector('[data-mode="sketch"]').click();
-    setStatus('', 'Sketch image detected — switched to Sketch mode');
+// ─── K-means color quantization ──────────────────────────────────────────────
+function kmeansQuantize(data, w, h, k) {
+  // Sample pixels for speed
+  const pixels = [];
+  const step = Math.max(1, Math.floor((w * h) / 2000));
+  for (let i = 0; i < w * h; i += step) {
+    pixels.push([data[i*4], data[i*4+1], data[i*4+2]]);
   }
+
+  // Init centers randomly
+  let centers = [];
+  for (let i = 0; i < k; i++) {
+    const p = pixels[Math.floor(Math.random() * pixels.length)];
+    centers.push([...p]);
+  }
+
+  // Iterate
+  for (let iter = 0; iter < 10; iter++) {
+    const sums = Array.from({length: k}, () => [0,0,0,0]);
+    for (const p of pixels) {
+      let best = 0, bestD = Infinity;
+      for (let c = 0; c < k; c++) {
+        const d = (p[0]-centers[c][0])**2 + (p[1]-centers[c][1])**2 + (p[2]-centers[c][2])**2;
+        if (d < bestD) { bestD = d; best = c; }
+      }
+      sums[best][0]+=p[0]; sums[best][1]+=p[1]; sums[best][2]+=p[2]; sums[best][3]++;
+    }
+    for (let c = 0; c < k; c++) {
+      if (sums[c][3] > 0) {
+        centers[c] = [sums[c][0]/sums[c][3], sums[c][1]/sums[c][3], sums[c][2]/sums[c][3]];
+      }
+    }
+  }
+
+  // Apply to all pixels
+  const out = new Uint8ClampedArray(data.length);
+  for (let i = 0; i < w * h; i++) {
+    let best = 0, bestD = Infinity;
+    const r = data[i*4], g = data[i*4+1], b = data[i*4+2];
+    for (let c = 0; c < k; c++) {
+      const d = (r-centers[c][0])**2 + (g-centers[c][1])**2 + (b-centers[c][2])**2;
+      if (d < bestD) { bestD = d; best = c; }
+    }
+    out[i*4]   = centers[best][0];
+    out[i*4+1] = centers[best][1];
+    out[i*4+2] = centers[best][2];
+    out[i*4+3] = 255;
+  }
+  return out;
 }
 
+// ─── Edge detection (Sobel) ──────────────────────────────────────────────────
+function sobelEdges(data, w, h, threshold) {
+  const gray = new Float32Array(w * h);
+  for (let i = 0; i < w * h; i++) {
+    gray[i] = 0.299*data[i*4] + 0.587*data[i*4+1] + 0.114*data[i*4+2];
+  }
+  const edges = new Uint8Array(w * h);
+  for (let y = 1; y < h-1; y++) {
+    for (let x = 1; x < w-1; x++) {
+      const gx =
+        -gray[(y-1)*w+(x-1)] + gray[(y-1)*w+(x+1)]
+        -2*gray[y*w+(x-1)]   + 2*gray[y*w+(x+1)]
+        -gray[(y+1)*w+(x-1)] + gray[(y+1)*w+(x+1)];
+      const gy =
+        -gray[(y-1)*w+(x-1)] - 2*gray[(y-1)*w+x] - gray[(y-1)*w+(x+1)]
+        +gray[(y+1)*w+(x-1)] + 2*gray[(y+1)*w+x] + gray[(y+1)*w+(x+1)];
+      edges[y*w+x] = Math.sqrt(gx*gx + gy*gy) > threshold ? 255 : 0;
+    }
+  }
+  return edges;
+}
+
+// ─── Dilate edges ────────────────────────────────────────────────────────────
+function dilateEdges(edges, w, h, thickness) {
+  if (thickness === 0) return edges;
+  const out = new Uint8Array(w * h);
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      let found = false;
+      outer:
+      for (let dy = -thickness; dy <= thickness; dy++) {
+        for (let dx = -thickness; dx <= thickness; dx++) {
+          const ny = y+dy, nx = x+dx;
+          if (ny>=0 && ny<h && nx>=0 && nx<w && edges[ny*w+nx]) { found=true; break outer; }
+        }
+      }
+      out[y*w+x] = found ? 255 : 0;
+    }
+  }
+  return out;
+}
+
+// ─── Heavy cartoon ───────────────────────────────────────────────────────────
+function applyHeavyCartoon(imageData, k, smoothing, thickness) {
+  const { width: w, height: h } = imageData;
+  const data = new Uint8ClampedArray(imageData.data);
+
+  // Smooth
+  for (let i = 0; i < smoothing; i++) boxBlur(data, w, h, 3);
+
+  // Quantize
+  const quantized = kmeansQuantize(data, w, h, k);
+
+  // Edges on smoothed
+  const edges = sobelEdges(data, w, h, 30);
+  const dilated = dilateEdges(edges, w, h, thickness);
+
+  // Combine
+  const out = new Uint8ClampedArray(w * h * 4);
+  for (let i = 0; i < w * h; i++) {
+    if (dilated[i]) {
+      out[i*4] = out[i*4+1] = out[i*4+2] = 0;
+    } else {
+      out[i*4]   = quantized[i*4];
+      out[i*4+1] = quantized[i*4+1];
+      out[i*4+2] = quantized[i*4+2];
+    }
+    out[i*4+3] = 255;
+  }
+  return new ImageData(out, w, h);
+}
+
+// ─── Sketch styles ───────────────────────────────────────────────────────────
+const SKETCH_STYLES = {
+  "Sepia":       { shadow:[20,10,5],   mid:[100,60,20],  highlight:[255,245,210] },
+  "Comic Blue":  { shadow:[0,0,80],    mid:[30,80,200],  highlight:[200,225,255] },
+  "Forest":      { shadow:[5,20,5],    mid:[30,100,30],  highlight:[200,240,190] },
+  "Sunset":      { shadow:[60,0,0],    mid:[200,80,0],   highlight:[255,240,180] },
+  "Classic B&W": { shadow:[0,0,0],     mid:[128,128,128],highlight:[255,255,255] },
+};
+
+function applySketch(imageData, lineThickness, posterizeLevels, styleName) {
+  const { width: w, height: h } = imageData;
+  const data = imageData.data;
+  const style = SKETCH_STYLES[styleName] || SKETCH_STYLES['Sepia'];
+
+  // Grayscale
+  const gray = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i++) {
+    gray[i] = Math.round(0.299*data[i*4] + 0.587*data[i*4+1] + 0.114*data[i*4+2]);
+  }
+
+  // Posterize
+  const factor = Math.floor(255 / (posterizeLevels - 1));
+  const posterized = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i++) {
+    posterized[i] = Math.round(gray[i] / factor) * factor;
+  }
+
+  // Erode (thicken dark lines)
+  let result = posterized;
+  if (lineThickness > 0) {
+    result = new Uint8Array(w * h);
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        let minVal = 255;
+        for (let dy = -lineThickness; dy <= lineThickness; dy++) {
+          for (let dx = -lineThickness; dx <= lineThickness; dx++) {
+            const ny = Math.min(h-1, Math.max(0, y+dy));
+            const nx = Math.min(w-1, Math.max(0, x+dx));
+            minVal = Math.min(minVal, posterized[ny*w+nx]);
+          }
+        }
+        result[y*w+x] = minVal;
+      }
+    }
+  }
+
+  // Color map
+  const out = new Uint8ClampedArray(w * h * 4);
+  for (let i = 0; i < w * h; i++) {
+    const v = result[i];
+    let r, g, b;
+    if (v < 128) {
+      const t = v / 127;
+      r = style.shadow[0]*(1-t) + style.mid[0]*t;
+      g = style.shadow[1]*(1-t) + style.mid[1]*t;
+      b = style.shadow[2]*(1-t) + style.mid[2]*t;
+    } else {
+      const t = (v-128) / 127;
+      r = style.mid[0]*(1-t) + style.highlight[0]*t;
+      g = style.mid[1]*(1-t) + style.highlight[1]*t;
+      b = style.mid[2]*(1-t) + style.highlight[2]*t;
+    }
+    out[i*4]=r; out[i*4+1]=g; out[i*4+2]=b; out[i*4+3]=255;
+  }
+  return new ImageData(out, w, h);
+}
+
+// ─── Apply cartoon ───────────────────────────────────────────────────────────
 async function applyCartoon() {
-  if (isProcessing || !origDataUrl) return;
+  if (isProcessing || !srcImageData) return;
   isProcessing = true;
   $('applyBtn').disabled = true;
   $('applyBtn').textContent = 'Processing...';
   $('loadingOverlay').classList.add('visible');
   setStatus('processing', 'Applying cartoon effect...');
 
-  const params = getParams();
-  const res = await fetch('/process', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(params)
-  });
-  const data = await res.json();
+  // Yield to browser to show spinner
+  await new Promise(r => setTimeout(r, 30));
 
-  resultDataUrl = 'data:image/jpeg;base64,' + data.result;
+  const k         = parseInt($('kSlider').value);
+  const smoothing = parseInt($('smoothSlider').value);
+  const thickness = parseInt($('thickSlider').value);
+  const style     = $('styleSelect').value;
+  const lineThick = parseInt($('lineSlider').value);
+  const levels    = parseInt($('levelsSlider').value);
+
+  // Work on a copy
+  const copy = new ImageData(new Uint8ClampedArray(srcImageData.data), srcImageData.width, srcImageData.height);
+
+  let result;
+  if (currentMode === 'heavy') {
+    result = applyHeavyCartoon(copy, k, smoothing, thickness);
+  } else {
+    result = applySketch(copy, lineThick, levels, style);
+  }
+
+  // Draw result to outCanvas
+  const canvas = $('outCanvas');
+  canvas.width = result.width;
+  canvas.height = result.height;
+  canvas.getContext('2d').putImageData(result, 0, 0);
+  resultDataUrl = canvas.toDataURL('image/jpeg', 0.92);
+
   $('resultImg').src = resultDataUrl;
   if (currentView === 'result') $('singleImg').src = resultDataUrl;
+  if (currentView === 'compare') $('compareView').classList.add('visible');
 
   $('loadingOverlay').classList.remove('visible');
   $('applyBtn').disabled = false;
@@ -642,20 +849,16 @@ async function applyCartoon() {
   isProcessing = false;
 }
 
-async function downloadResult() {
-  const params = getParams();
-  const res = await fetch('/download', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(params)
-  });
-  const blob = await res.blob();
-  const url = URL.createObjectURL(blob);
+// ─── Download ────────────────────────────────────────────────────────────────
+function downloadResult() {
+  if (!resultDataUrl) return;
   const a = document.createElement('a');
-  a.href = url; a.download = 'cartoon.png'; a.click();
-  URL.revokeObjectURL(url);
+  a.href = resultDataUrl;
+  a.download = 'cartoon.jpg';
+  a.click();
 }
 
+// ─── Events ──────────────────────────────────────────────────────────────────
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     currentMode = btn.dataset.mode;
@@ -669,7 +872,7 @@ document.querySelectorAll('.view-btn').forEach(btn => {
   btn.addEventListener('click', () => showView(btn.dataset.view));
 });
 
-$('fileInput').addEventListener('change', e => { if (e.target.files[0]) uploadFile(e.target.files[0]); });
+$('fileInput').addEventListener('change', e => { if (e.target.files[0]) loadFile(e.target.files[0]); });
 $('applyBtn').addEventListener('click', applyCartoon);
 $('downloadBtn').addEventListener('click', downloadResult);
 
@@ -678,7 +881,7 @@ zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add(
 zone.addEventListener('dragleave', () => zone.classList.remove('drag'));
 zone.addEventListener('drop', e => {
   e.preventDefault(); zone.classList.remove('drag');
-  if (e.dataTransfer.files[0]) uploadFile(e.dataTransfer.files[0]);
+  if (e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
 });
 
 [['kSlider','kVal'],['smoothSlider','smoothVal'],['thickSlider','thickVal'],
